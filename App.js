@@ -25,7 +25,7 @@ export default function App() {
 
       <Text style={styles.initialText}>Open up App.js to start working on your app!</Text>
 
-      <StatusBarr style="auto"/>
+      <StatusBar style="auto"/>
     </View>
   );
 }
