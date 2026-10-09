@@ -8,14 +8,14 @@ import { StyleSheet,
    TouchableOpacity, 
    Switch, 
    ActivityIndicator,
-   Alert
+   Alert,
+   Image
   } from 'react-native';
 import React,{ useState } from 'react';
-import RadioButton from "./components/RadioButton"
 
 export default function App() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
   const [gender,setGender] = useState('Мужской');
   const [isAgree,setIsAgree] = useState(false);
   const [isStatusOn,setIsStatusOn] = useState(true);
@@ -23,6 +23,15 @@ export default function App() {
   const [time,setTime] = useState("14:00");
   const [isSubmitting,setIsSubmitting] = useState(false);
   const [resultMessage,setResultMessage] = useState();
+
+  const RadioButton = ({label, selected, onSelect}) =>{
+    <TouchableOpacity
+    style={[styles.radioOption, selected && styles.radioSelected]}
+    onPress={onSelect}
+    >
+        <Text style={selected ? {color: "#fff"} : {color: "#000"}}>{label}</Text>
+    </TouchableOpacity>
+  }
 
   const handleSubmit = () => {
     if (setIsSubmitting) return;
@@ -39,7 +48,7 @@ export default function App() {
         Дата/Время: ${date} в ${time}`);
     }, 1500);
   };
-  }
+  
 
   return (
     <ScrollView style={styles.scrollViewContainer} contentContainerStyle={styles.contentContainer}>
@@ -122,13 +131,13 @@ export default function App() {
             resizeMode="cover"
           />
 
-          <Text style={styles.tvResult}>{recultMessage}</Text>
+          <Text style={styles.tvResult}>{resultMessage}</Text>
 
       </View>
       <StatusBar style="auto"/>
     </ScrollView>
   );
-
+}
 const styles = StyleSheet.create({
   scrollViewContainer: {
     flex:1,
